@@ -1,0 +1,12 @@
+
+.dropdown-toggle {
+    cursor:pointer;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.homeTitle {
+    color: purple;
+}

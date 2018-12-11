@@ -1,0 +1,46 @@
+
+<p>
+  <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search Product Here...">
+</p>
+
+
+
+<div class="row">
+
+  <div class="col-3">
+    <div class="sticky-top">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" routerLink="/">All</a>
+        <a
+          *ngFor="let c of categories$ | async"
+          routerLink="/"
+          [queryParams]="{ category: c.$key }"
+          class="list-group-item list-group-item-action"
+          [class.active]="category === c.$key"
+          >
+          {{ c.name }}</a>
+      </div>
+    </div>
+  </div>
+  
+    <div class="col">
+      <div class="row">
+        <ng-container *ngFor="let p of filteredProducts; let i = index">
+      <div class="col">
+      <div class="card">
+          <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ p.title }}</h5>
+            <p class="card-text">{{ p.price | currency:'USD':true }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+          </div>
+      </div>
+    </div>
+    <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+    </ng-container>
+      </div>
+  </div>
+  
+</div>
